@@ -18,11 +18,6 @@ class isAdminOrOwnerUser(permissions.BasePermission):
             and obj.id == req.user.id
         )
 
-
-
 class isAdmin(permissions.BasePermission):
-    def has_permission(self, request, view):
-        if request.method in permissions.SAFE_METHODS:
-            return True
-        
+    def has_permission(self, request, view):        
         return request.user.is_authenticated and request.user.is_superuser
