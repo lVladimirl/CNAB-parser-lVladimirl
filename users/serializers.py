@@ -10,10 +10,9 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 
         fields = [
             "id",
-            "password",
-            "username",
             "cpf",
-            "card"
+            # "card",
+            "username",
         ]
 
         read_only_fields=[
@@ -21,8 +20,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
         ]
 
         extra_kwargs={
-            "password":{"write_only": True},
-            "card":{"write_only": True}
+            # "card":{"write_only": True},
         }
 
     def create(self, validated_data):
@@ -31,7 +29,7 @@ class RegisterUserSerializer(serializers.ModelSerializer):
 class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = [ "username","cpf","card"]
+        fields = [ "username","cpf"]
 
 class UserRelatedSerializer(serializers.ModelSerializer):
     class Meta:
