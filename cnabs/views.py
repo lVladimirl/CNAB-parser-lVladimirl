@@ -2,7 +2,7 @@ from rest_framework import views
 from rest_framework import generics
 
 from .forms import UploadFileForm
-from .serializers import CnabSerializer
+from .serializers import CnabSerializer, CnabViewSerializer
 from .models import Cnab
 from users.models import User
 from shops.models import Shop
@@ -58,8 +58,9 @@ class CnabView(generics.ListAPIView):
             serializer.is_valid(raise_exception=True)
             serializer.save(owner=owner, shop=shop)
             array.append(serializer.data)
-
-        return views.Response(array, status=views.status.HTTP_201_CREATED)
+        return_array = Cnab.objects.all()
+        serializer = CnabViewSerializer(return_array, many=True)
+        return views.Response(serializer.data, status=views.status.HTTP_201_CREATED)
 
             # serializer = CnabSerializer(data=object)
             # serializer.is_valid(raise_exception=True)
