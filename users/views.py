@@ -21,3 +21,4 @@ class ListDetailUSerView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = UserDetailSerializer
 
     lookup_field = "id"
+

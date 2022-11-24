@@ -5,7 +5,8 @@ from .forms import UploadFileForm
 from .serializers import CnabSerializer
 from .models import Cnab
 from utils.file_handler import file_handler
-
+from shops.models import Shop
+from shops.serializers import ShopViewSerializer
 from django.shortcuts import render
 
 import  ipdb
@@ -37,15 +38,22 @@ class CnabView(generics.ListAPIView):
         raw_array = file.read().decode('windows-1252').splitlines()
         treat_array = file_handler(raw_array)
         for object in treat_array:
-            serializer = CnabSerializer(data=object)
-            serializer.is_valid(raise_exception=True)
-            serializer.save()
-            return views.Response(serializer.data, status=views.status.HTTP_201_CREATED)
+            ...
+            # shop = get_object_or_create(Shop, name=object["shop"])
+            # ipdb.set_trace()
+            # print(shop)
+            # serializer = ShopViewSerializer(shop)
+            
 
-            serializer = CnabSerializer(data=object)
-            serializer.is_valid(raise_exception=True)
-            cnab_register = Cnab.objects.create(**serializer.validated_data)
-            cnab_register.save()
+            # serializer = CnabSerializer(data=object)
+            # serializer.is_valid(raise_exception=True)
+            # serializer.save()
+            # return views.Response(serializer.data, status=views.status.HTTP_201_CREATED)
+
+            # serializer = CnabSerializer(data=object)
+            # serializer.is_valid(raise_exception=True)
+            # cnab_register = Cnab.objects.create(**serializer.validated_data)
+            # cnab_register.save()
 
         # list_cnab = Cnab.objects.all()    
         

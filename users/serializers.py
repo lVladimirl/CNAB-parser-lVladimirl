@@ -37,3 +37,4 @@ class UserRelatedSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [ "username","cpf"]
+        
