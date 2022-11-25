@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from .models import Shop
-from users.serializers import UserRelatedSerializer
+from users.serializers import UserSerializer
 
 class RegisterShopSerializer(serializers.ModelSerializer):
     class Meta:
@@ -10,7 +10,7 @@ class RegisterShopSerializer(serializers.ModelSerializer):
         ready_only_fields = ["id"]
 
 class ShopViewSerializer(serializers.ModelSerializer):
-    owner = UserRelatedSerializer()
+    owner = UserSerializer()
     class Meta:
         model = Shop
         fields= ["name","owner"]

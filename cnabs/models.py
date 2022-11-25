@@ -2,17 +2,10 @@ from django.db import models
 
 from django.db import models
 
-# class Cnab(models.Model):
-#     type= models.CharField(max_length=1)
-#     date= models.DateField()
-#     value= models.IntegerField()
-#     cpf= models.CharField(max_length=11)
-#     card = models.CharField(max_length=12)
-#     hour = models.TimeField()
-#     owner = models.CharField(max_length=14)
-#     shop = models.CharField(max_length=19)
+import uuid
 
 class Cnab(models.Model):
+    id = models.UUIDField(default=uuid.uuid4, primary_key=True, editable=False)
     type= models.CharField(max_length=1)
     date= models.DateField()
     value= models.IntegerField()
