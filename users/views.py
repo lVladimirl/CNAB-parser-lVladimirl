@@ -3,21 +3,20 @@ from rest_framework import generics
 from rest_framework.authentication import TokenAuthentication
 from utils.permissions import isAdmin
 from .models import User
-from .serializers import RegisterUserSerializer, UserDetailSerializer
-from users.permissions import IsOwner, ListUsersValidation
+from .serializers import  UserSerializer
 
 class CreateUserView(generics.CreateAPIView, generics.ListAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [isAdmin]
 
     queryset = User.objects.all()
-    serializer_class = RegisterUserSerializer
+    serializer_class = UserSerializer
 
-class ListDetailUSerView(generics.RetrieveUpdateDestroyAPIView):
+class ListDetailUserView(generics.RetrieveAPIView):
     authentication_classes = [TokenAuthentication]
     permission_classes = [isAdmin]
 
     queryset = User.objects.all()
-    serializer_class = UserDetailSerializer
+    serializer_class = UserSerializer
 
     lookup_field = "id"
